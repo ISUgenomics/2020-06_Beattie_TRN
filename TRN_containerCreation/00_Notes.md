@@ -248,9 +248,9 @@ sudo singularity exec --bind $PWD ../test3 java -cp ".:/opt/S1/Integrate_v1.0/" 
 Needs the blastall command not blast-plus.  Found a place to download it.
 
 ```
-cd /usr
-wget https://anaconda.org/biocore/blast-legacy/2.2.26/download/linux-64/blast-legacy-2.2.26-2.tar.bz2
-tar -jxvf blast-legacy-2.2.26-2.tar.bz2
+  cd /usr
+  wget https://anaconda.org/biocore/blast-legacy/2.2.26/download/linux-64/blast-legacy-2.2.26-2.tar.bz2
+  tar -jxvf blast-legacy-2.2.26-2.tar.bz2
 ```
 
 
@@ -556,7 +556,7 @@ It got past Meme and tomtom this is on the very small dataset keep in mind no th
 
 
 
-Need to make sure that the Data folder exists
+### Need to make sure that the Data folder exists
 
 ```
 mkdir bin/DISTILLER-V2/Data
@@ -592,3 +592,59 @@ java.io.FileNotFoundException: bin/DISTILLER-V2/outputInitial.m (No such file or
 	at java.io.FileReader.<init>(FileReader.java:58)
 	at Integrate.main(Integrate.java:498)
 ```
+
+
+## Rebuild the image with all the changes.
+
+```
+sudo singularity build Integrate.simg recipeF
+```
+
+
+So was able to get it to build but without mysql fully functioning.  Had to do the following after the container was built for it to be running
+
+
+#### create the sandbox
+
+```
+sudo singularity build --sandbox IntegrateSandbox Integrate.simg
+```
+
+```
+sudo singularity shell --writable IntegrateSandbox/
+kill -9 32442
+root     32442     1  0 18:15 pts/1    00:00:06 /usr/libexec/mysqld --user=root
+systemctl enable mariadb
+mysqld_safe --user=root &
+mysqladmin -u root password 'password'
+mysqladmin -u root -h vagrant password 'password' -ppassword
+perl -MCPAN -e 'install DBI'
+perl -MCPAN -e 'install DBD::mysql
+```
+
+#### testing to see if it worked
+```
+sudo singularity exec --bind $PWD ../IntegrateSandbox java -cp ".:/opt/S1/Integrate_v1.0/" Integrate
+Run started at :Mon Jul 06 21:40:10 UTC 2020
+Extracting IGRs...
+Calculating bg distribution......
+Running orthomcl...... (This may take a while depending on the number and sizes of your genomes...)
+Orthomcl analyses failed... Check error output and make necessary modifications
+
+```
+
+* 07/07/2020
+
+See 01_createSignularityContainer for final steps that worked.
+
+
+#### get the container sandbox off the vagrant VM and upload to box.
+```
+vagrant sudo-rsync -avz eb60097:/home/vagrant/IntegrateSandbox .
+tar -cvfz IntegrateSandbox.tar.gz IntegrateSandbox/
+
+tar: Can't open `shadow-': Permission denied
+tar: Error exit delayed from previous errors.
+```
+
+I am worried that this may not be the full folder or that it didn't zip properly.  May need to create it directly on the machine they are going to use it on.

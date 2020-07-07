@@ -83,3 +83,25 @@ Run finished at :Tue Jul 07 15:20:27 UTC 2020
 ```
 sudo singularity build Integrate.simg IntegrateSandbox/
 ```
+
+
+## Test using the singularity image rather than the writable folder
+
+* Execute the following command from the folder that contains the bin and data folder and Parameters.txt file.
+```
+sudo singularity exec --bind $PWD ../Integrate.simg java -cp ".:/opt/S1/Integrate_v1.0/" Integrate
+```
+
+This failed.  For some reason, mysql or some other dependency requires to be in the writable sandbox version of the singularity image for it to work.
+
+bin contains
+
+```
+bin
+All_motifs_Ecoli             DISTILLER_extend_corr_operons.class     gff_parse.class      meme_bash                   Merge_motifs.class            regulator_predict_distance.class  TF_seq_retrieve.class
+AUPR_preprocessing.class     DISTILLER_motif_matrix.class            GO_descriptions.txt  MemeParse_clusters.class    Motif_bindsite_overlap.class  regulator_predict_merge.class     Tomtom_parse.class
+commands                     DISTILLER_parse.class                   GO_enrichment.class  MemeParse_forMast.class     orthomcl.config               src                               Unique_interactions.class
+CreateFasta_for_MEME.class   DISTILLER-V2                            initialize.class     MemeParse_forTOMTOM2.class  orthomclSoftware-v2.0.9       Summary2.class
+deleteFolder.class           Extract_upstream_regions_revcomp.class  mast_bash            MemeParse_forTOMTOM3.class  Pfam_TF_results.txt           Summary.class
+DISTILLER_extend_corr.class  gene_cluster_map.class                  Mean_SD.class        Merge_motifs2.class         regulator_predict_corr.class  TF_Domain_family.class
+```
