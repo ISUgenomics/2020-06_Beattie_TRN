@@ -105,30 +105,18 @@ javac Integrate.java
 cd /root
 
 
-#kill -9 21725
-#sleep 5
-#kill -9 21582
-#sleep 5
-#ps -ef | grep mysql
-
-
-## do these commands after
+## To finalize the setup for this singularity container, mysql has to be setup after container is made
+## I have not found any other way to have it work Execute these commands after container builds
+# sudo singularity build --sandbox IntegrateSandbox Integrate2.simg
+# source /environment
 # mysql_install_db
-# systemctl enable mariadb
 # mysqld_safe --user=root &
-# sleep 10
-# ps -ef | grep mysql
-#
 # mysqladmin -u root password 'password'
 # mysqladmin -u root -h vagrant password 'password' -ppassword
 # perl -MCPAN -e 'install DBI'
-# perl -MCPAN -e 'install DBD::mysql
-
-#make it so it runs as a jar file  <- I don't think I need this section
-##jar -cvf Integrate.jar Integrate.class   #create the jar file so you don't have to run it inside the folder
-##echo "Manifest-version: 1.0" > manifest.mf
-##echo "Main-Class: Integrate" >> manifest.mf
-##jar cfm Integrate.jar manifest.mf Integrate.class
+# perl -MCPAN -e 'install DBD::mysql'
+# exit
+# sudo singularity build Integrate.simg IntegrateSandbox/
 
 
 
