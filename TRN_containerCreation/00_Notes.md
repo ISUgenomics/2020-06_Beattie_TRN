@@ -648,3 +648,11 @@ tar: Error exit delayed from previous errors.
 ```
 
 I am worried that this may not be the full folder or that it didn't zip properly.  May need to create it directly on the machine they are going to use it on.
+
+
+#### get some of the other files
+
+```
+vagrant sudo-rsync eb60097:/home/vagrant/Imam/Parameters.txt Parameters.small
+
+```
