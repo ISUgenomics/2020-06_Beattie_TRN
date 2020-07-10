@@ -17,7 +17,6 @@ SPACK_ROOT=/opt/spack
 export SPACK_ROOT
 export PATH=$SPACK_ROOT/bin:$PATH
 source $SPACK_ROOT/share/spack/setup-env.sh
-export PATH=$SPACK_ROOT/isugif/snpPhylo/bin:$SPACK_ROOT/isugif/snpPhylo/wrappers:$PATH
 
 # export meme path
 export PATH=$HOME/meme/bin:$PATH #installed Meme manually so had to set it in the PATH

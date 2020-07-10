@@ -13,6 +13,7 @@ sudo singularity build Integrate2.simg recipeF
 sudo singularity build --sandbox IntegrateSandbox Integrate2.simg
 ```
 ```
+sudo singularity shell --writable IntegrateSandbox
 source /environment
 mysql_install_db
 mysqld_safe --user=root &
