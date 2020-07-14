@@ -1,0 +1,39 @@
+###Input parameters for compare
+### This is an example dataset that only uses the first 3 genomes from the Integrate test dataset to be used as a test of the singularity container.
+
+##Genome files (separate multiple files with commas)
+Genomic_sequences = NC_000913.fna, NC_003198.fna, NC_011740.fna
+
+## Gff files (same order as genome files)
+GFF = NC_000913.gff, NC_003198.gff, NC_011740.gff
+
+##Proteome files (same order as genome files)
+Proteomes = NC_000913.faa, NC_003198.faa, NC_011740.faa
+
+##Four letter organism abbreviations for Orthomcl (same order as genome files)
+Abbr = Ecol, Salm, Efer
+
+##Target organism
+Target = Ecol
+
+##Length of IGR to use
+IGR_length = 500
+
+##Order of Background dist (0,1,2,3 etc)
+Order = 2
+
+##Motif match cutoff
+pvalue = 0.001
+
+##GOA (gene ontology annotation can be obtained from ftp://ftp.ebi.ac.uk/pub/databases/GO/goa/proteomes)
+GOA = 18.E_coli_MG1655.goa
+
+##Expression
+Expression_data = E_coli_v4_Build_6_chips907probes4297.tab
+
+##Operons (can be obtained from microbes online: http://microbesonline.org/operons/OperonList.html)
+Operon_data = gnc511145.named
+
+##Mysql login
+Username = root
+Password = password

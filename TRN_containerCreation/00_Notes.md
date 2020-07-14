@@ -656,3 +656,27 @@ I am worried that this may not be the full folder or that it didn't zip properly
 vagrant sudo-rsync eb60097:/home/vagrant/Imam/Parameters.txt Parameters.small
 
 ```
+
+* 7/14/2020
+
+After some back and forth with Breah, I realized that the sandbox was not going to work on other resources.  I decided to build in a run script to execute the steps needed prior to running the Integrate program.
+
+#### Exact path to the perl we need to use.
+
+```
+/opt/spack/opt/spack/linux-centos7-sandybridge/gcc-4.8.5/perl-5.30.3-bzlnqjd5cukpm5ud4m3rhf66noiyt7dj/bin/perl -MCPAN -e 'install DBI'
+/opt/spack/opt/spack/linux-centos7-sandybridge/gcc-4.8.5/perl-5.30.3-bzlnqjd5cukpm5ud4m3rhf66noiyt7dj/bin/perl -MCPAN -e 'install DBD::mysql
+```
+
+#### Rebuild singularity container using RecipeG
+
+```
+sudo singularity build --section runscript --section environment Integrate4.simg recipeG
+```
+
+
+* ./Imam data folder
+
+```
+singularity run --bind $PWD ../Integrate4.simg
+```
