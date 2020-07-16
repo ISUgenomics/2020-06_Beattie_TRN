@@ -37,6 +37,8 @@ You will need to modify this file for your genomes of interest or use the testin
 
 ## Running the container
 
+This still only works if you have a VM with singularity installed
+
 ```
-singularity run --bind $PWD ../Integrate4.simg
+sudo singularity run --bind $PWD ../Integrate4.simg
 ```

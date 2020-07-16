@@ -680,3 +680,12 @@ sudo singularity build --section runscript --section environment Integrate4.simg
 ```
 singularity run --bind $PWD ../Integrate4.simg
 ```
+
+
+## trying to set the root password within the container
+
+```
+sudo singularity build --section runscript --section environment --section post Integrate4.simg recipeH
+rfsdm2smirjm3jr97u
+
+```
