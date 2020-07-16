@@ -133,8 +133,8 @@ cd /root
 
 #mysqladmin -u root password 'password'
 #mysqladmin -u root -h vagrant password 'password' -ppassword
-# /opt/spack/opt/spack/linux-centos7-sandybridge/gcc-4.8.5/perl-5.30.3-bzlnqjd5cukpm5ud4m3rhf66noiyt7dj/bin/perl -MCPAN -e 'install DBI'
-# /opt/spack/opt/spack/linux-centos7-sandybridge/gcc-4.8.5/perl-5.30.3-bzlnqjd5cukpm5ud4m3rhf66noiyt7dj/bin/perl -MCPAN -e 'install DBD::mysql'
+/opt/spack/opt/spack/linux-centos7-sandybridge/gcc-4.8.5/perl-5.30.3-bzlnqjd5cukpm5ud4m3rhf66noiyt7dj/bin/perl -MCPAN -e 'install DBI'
+/opt/spack/opt/spack/linux-centos7-sandybridge/gcc-4.8.5/perl-5.30.3-bzlnqjd5cukpm5ud4m3rhf66noiyt7dj/bin/perl -MCPAN -e 'install DBD::mysql'
 
 
 
